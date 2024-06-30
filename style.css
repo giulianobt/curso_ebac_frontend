@@ -1,0 +1,54 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+.container {
+    margin: 0 auto;
+    margin-top: 200px;
+}
+
+.container h1 {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.container input {
+    font-size: 16px;
+    padding: 8px;
+    width: 300px;
+    margin-right: 8px;
+    height: 36px;
+}
+
+.container button {
+    padding: 8px;
+    height: 36px;
+    font-weight: bold;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    
+}
+
+#tarefas {
+    max-width: 200px;
+    margin: 0 auto;
+    margin-top: 16px;
+    
+}
+
+#tarefas li {
+    font-size: 24px;
+    padding-bottom: 8px;
+    cursor: pointer;
+}
+
+.concluido {
+    text-decoration: line-through;
+}
