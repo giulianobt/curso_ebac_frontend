@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício Bootstrap</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h3 class="text-center">Cadastro de usuários</h3>
+        </header>
+        <form id="form-principal">
+
+            <fieldset class="p-3">
+                <div class="row mb-2">
+                    <div class="col">
+                        <label for="nome" class="form-label fw-bold">Nome</label>
+                        <input type="text" id="nome" placeholder="Digite o nome do usuário" class="form-control" required>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-lg">
+                        <label for="email" class="form-label fw-bold">Email</label>
+                        <input type="email" id="email" placeholder="Digite o email do usuário" class="form-control" required>
+                    </div>
+                    <div class="col-lg">
+                        <label for="telefone" class="form-label fw-bold">Telefone</label>
+                        <input type="tel" id="telefone" placeholder="Digite o telefone do usuário" class="form-control" required>
+                    </div>
+                </div>
+                <div class="d-flex flex-row-reverse mt-4">
+                    <button type="submit" class="btn btn-lg btn-primary">Enviar</button>
+
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    <script>
+        $(document).ready(function() {
+            
+            $('#form-principal').submit(function(e) {
+                alert('Formulário enviado!')
+            })
+
+        })
+    </script>
+
+</body>
+
+</html>

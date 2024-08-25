@@ -1,0 +1,17 @@
+body {
+    background-color:rgb(231, 231, 231) ;
+}
+
+.container {
+    max-width: 720px;
+}
+
+header h3 {
+    margin-top: 64px
+}
+
+fieldset {
+    background-color: #fff;
+    border: rgb(167, 167, 167) solid 1px;
+    border-radius: 5px;
+}
