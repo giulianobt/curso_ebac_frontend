@@ -1,1 +1,1 @@
-function ಠ_ಠ73(){console.log("Olá Mundo!")}ಠ_ಠ73();
+function ಠ_ಠ776(){console.log("Olá Mundo!")}ಠ_ಠ776();
