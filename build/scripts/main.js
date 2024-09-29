@@ -1,1 +1,0 @@
-function ಠ_ಠ776(){console.log("Olá Mundo!")}ಠ_ಠ776();

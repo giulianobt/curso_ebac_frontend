@@ -1,9 +1,20 @@
-@use './reset';
-@use './variaveis';
+@import 'mapas.less';
+@breakPointMobile: ~"(max-width: 767px)";
+@breakPointTablet: ~"(max-width: 1023px)";
 
+.marginLeft24 {
+    margin-left: 24px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Roboto, sans-serif;
+}
 
 body {
-    background-color: variaveis.$corDeFundo;
+    background-color: #colors[bodyBackgroundColor];
 }
 
 li {
@@ -17,7 +28,7 @@ li {
 }
 
 header {
-    background-color: variaveis.$corPrincipal;
+    background-color: #colors[headerBackgroundColor];
     position: sticky;
     top: 0;
     left: 0;
@@ -35,7 +46,7 @@ header {
 
     li {
         font-weight: bold;
-        margin-left: 24px;
+        .marginLeft24();
 
         a {
             color: #fff;
@@ -43,6 +54,7 @@ header {
         }
     }
 }
+
 
 section {
     padding: 56px 0;
@@ -55,30 +67,35 @@ section {
     column-gap: 1%;
     row-gap: 4%;
     width: 100%;
+
 }
 
-.product-item img {
-    width: 100%;
-    border-radius: 16px;
-}
+.product {
+    &-item {
+        img {
+            width: 100%;
+            border-radius: 16px;
+        }
+    }
 
-.product-button {
-    display: block;
-    background-color: #44bd32;
-    color: #fff;
-    text-align: center;
-    padding: 8px 0;
-    border-radius: 8px;
-    margin-top: 8px;
-    text-decoration: none;
+    &-button {
+        display: block;
+        background-color: #colors[productBackgroundColor];
+        color: #fff;
+        text-align: center;
+        padding: 8px 0;
+        border-radius: 8px;
+        margin-top: 8px;
+        text-decoration: none;
 
-    &:hover {
-        background-color: #4cd137;    
+        &:hover {
+            background-color: #4cd137;
+        }
     }
 }
 
 
-@media screen and (max-width: variaveis.$tablet) {
+@media @breakPointTablet {
     .container {
         max-width: 80%;
     }
@@ -89,12 +106,12 @@ section {
     }
 }
 
-@media screen and (max-width: variaveis.$mobile) {
+@media @breakPointMobile {
     .products {
         display: block;
     }
 
-    .product-item  {
+    .product-item {
         margin-bottom: 32px;
     }
 }
