@@ -1,138 +1,160 @@
 # curso_ebac_frontend
 Cusro EBAC frontend
-- Exercício less
+- Exercício Grunt
 
-# aula 17.1
+# aula 18.1
+npm i -g grunt-cli
+npm i --save-dev grunt
 
-npm install -g less
-npm install --save-dev less
-npm install -g less-watch-compiler
-npm install --save-dev less-watch-compiler
+// package.json
+scripts: grunt: grunt
 
-scripts less: (less-watch-compiler ou lessc) ./src/styles ./build/styles main.less
+# aula 18.2
 
-# aula 17.2
-flatuicolors.com
-
-// arqiuivo variaveis.less
-@nomeDaVariavel: 'asdf'
-
-// arquivo main.less
-@import 'variaveis.less'
-body {
-    background-color: @nomeDaVariavel;
-}
-
-# aula 17.3
-
-@breakingPointMobile: ~"(max-width: 767px)";
-
-.container {
-    max-width: 960px;
-    width: 100%:
-    margin: 0 auto;
-
-    @media @breakingPoingMobile  {
-        max-width: 70%;
-    }
-}
-
-# aula 17.4
-
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
-}
-
-header {
-    padding: 24px;
-
-    .profile-avatar {
-        display: block;
-        margin: 0 auto;
-        border-radius: 50%;
-    }
-}
-
-.profile-bio {
-    text-align: center;
-
-    &-name {
-        font-size: 16px;
-        .marginBottom8();
-    }
-}
-
-// mixin
-.marginBottom8 {
-    margin-bottom: 8px;
-}
-
-# auto 17.5
-feathericons.com
-
-li {
-    list-style: none;
-
-    img {
-        transition: all ease .3s;
-        &:hover {
-            transform: scale(1.3);
-        }
-    }
-}
-
-// arquivo mapas.less
-
-#colors() {
-
-    backgroundColor: #111;
-    buttonColor: #111;
-    textColor: #111;
-
-}
-
-// arquivo main.css
-
-@import "mapas.less";
-
-body {
-    backgorund-color: #colors[backgroundColor];
-}
-
-.projects-list {
-    margin-top: 32px;
-
-    &-item {
-        a {
-            text-decoration: none;
-            background-color: #colors[buttonColor];
-            display: block;
-            padding: 16px 20px;
-            margin-bottom: 16px;
-            text-align: center
-            color: #colors[textColor];
-            font-weight: bold;
-            border-radius: 30px;
-            border: 2px solid #colors[buttonColor];
-            transition: all ease .5s;
-
-            &-hover {
-                color: #colors[buttonColor];
-                background-color: transparent;
+// Grunfile.js
+module.exports = function(grunt) {
+    grunt.initConfig({
+        pkg: grunt.file.readJSON('package.json'),
+        less: {
+            development: {
+                files: {
+                    'main.css': 'main.less'
+                }
+            },
+            production: {
+                options: {
+                    compress: true,
+                },
+                files: {
+                    'main.min.css': 'main.less'
+                }
             }
-        }
-    }
+        },
+        sass: {
+            dist: {
+                options: {
+                    style: 'compressed'
+                },
+                files: {
+                    'main2.css': 'main.scss'
+                }
+            }
+        },
+        concurrent: {
+            target: ['olaGrunt', 'less', 'sass']
+        },
+        watch: {
+            less: {
+                files: ['src/styles/**/*.less'],
+                tasks: ['less:development']
+            },
+            html: {
+                files: ['src/index.html'],
+                tasks: ['replace:dev']
+            }
+        }, 
+        replace: {
+            dev: {
+                options: {
+                    patterns: [
+                        {
+                            match: 'ENERECO_DO_CSS',
+                            replacement: './styles/main.css'
+                        }
+                    ]
+                },
+                files: [
+                    {
+                        expand: true,
+                        flatten: true,
+                        src: ['src/index.html'],
+                        dest: 'dev/'
+                    }
+                ]
+            },
+            dist: {
+                options: {
+                    patterns: [
+                        {
+                            match: 'ENERECO_DO_CSS',
+                            replacement: './styles/main.min.css'
+                        }
+                    ]
+                },
+                files: [
+                    {
+                        expand: true,
+                        flatten: true,
+                        src: ['prebuild/index.html'],
+                        dest: 'dist/'
+                    }
+                ]
+            }
+        },
+        htmlmin: {
+            dist: {
+                options:  {
+                    removeComments: true,
+                    collapseWhitespace: true,
+                },
+                files: {
+                    'prebuild/index.html': 'src/index.html'
+                }
+            }
+        },
+        clean: ['prebuild']
+    })
+
+    grunt.registerTask('olaGrunt', function() {
+        const done = this.async()
+        setTimeout(function() {
+            console.log('Olá Grunt')
+            done()
+        })
+        console.log('olá grunt')
+    })
+
+    grunt.loadNpmTasks('grunt-contrib-less')
+    grunt.loadNpmTasks('grunt-contrib-sass')
+    grunt.loadNpmTasks('grunt-concurrent')
+    grunt.loadNpmTasks('grunt-contrib-watch')
+    grunt.loadNpmTasks('grunt-replace')
+    grunt.loadNpmTasks('grunt-contrib-htmlmin')
+    grunt.loadNpmTasks('grunt-contrib-clean')
+
+    grunt.registerTask('default', ['watch'])
+    grunt.registerTask('build', ['less:production', 'htmlmin:dist', 'replace:dist', 'clean'])
 }
 
-.container {
-    max-width: 960px;
-    width: 100%;
-    margin: 0 auto;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
+> npm run grunt olaGrunt
+
+# aula 18.3
+
+npm install --save-dev grunt-contrib-less
+npm install --save-dev grunt-contrib-sass
+
+# aula 18.4
+
+npm install --save-dev grunt-concurrent
+
+# aula 18.5
+
+# aula 18.6
+
+npm install --save-dev grunt-contrib-watch
+
+# aula 18.7
+
+npm install --save-dev grunt-replace
+npm install --save-dev grunt-contib-htmlmin
+npm install --save-dev grunt-contrib-clean
+
+
+## Neste exercício você deverá:
+
+1) Criar um arquivo Gruntfile;
+2) Executar a compilação do LESS;
+3) Executar a compressão de código JavaScript;
+4) Criar um branch chamada "exercicio_grunt";
+5) Armazenar o arquivo Gruntfile nesta branch;
+6) Enviar o link do repositório através da plataforma.

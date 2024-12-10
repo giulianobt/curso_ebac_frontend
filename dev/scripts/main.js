@@ -1,0 +1,3 @@
+document.addEventListener("DOMContentLoaded", function(e) {
+    console.log('Arquivo main.js carregado com sucesso!')
+})
