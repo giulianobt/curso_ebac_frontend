@@ -1,7 +1,7 @@
 {
-  "name": "exercicio_less",
+  "name": "boas_praticas_css",
   "version": "1.0.0",
-  "description": "Cusro EBAC frontend - Exercício less",
+  "description": "Cusro EBAC frontend - Boas práticas CSS",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
